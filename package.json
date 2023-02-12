@@ -79,15 +79,6 @@
     "arrowParens": "always",
     "printWidth": 100
   },
-  "files": [
-    "build/adonis-typings",
-    "build/src",
-    "build/index.d.ts",
-    "build/index.js",
-    "build/request-logger.d.ts",
-    "build/request-logger.js",
-    "build/providers"
-  ],
   "adonisjs": {
     "types": "@skrenek/request-logger",
     "providers": [
