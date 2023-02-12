@@ -1,0 +1,97 @@
+{
+  "name": "adonisjs-request-logger",
+  "version": "0.1.0",
+  "description": "A simple middleware module to add configurable http request logging",
+  "main": "index.js",
+  "scripts": {
+    "mrm": "mrm --preset=@adonisjs/mrm-preset",
+    "pretest": "npm run lint",
+    "test": "node -r @adonisjs/require-ts/build/register bin/test.ts",
+    "lint": "eslint . --ext=.ts",
+    "release": "np --message=\"chore(release): %s\"",
+    "version": "npm run build",
+    "format": "prettier --write .",
+    "clean": "del-cli build",
+    "compile": "npm run lint && npm run clean && tsc",
+    "build": "npm run compile",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "adonisjs",
+    "request",
+    "logging"
+  ],
+  "author": "Steve Krenek (https://github.com/skrenek)",
+  "license": "MIT",
+  "mrmConfig": {
+    "core": false,
+    "license": "MIT",
+    "services": [],
+    "minNodeVersion": "16.13.1",
+    "probotApps": []
+  },
+  "devDependencies": {
+    "@adonisjs/core": "^5.9.0",
+    "@adonisjs/mrm-preset": "^5.0.3",
+    "@adonisjs/require-ts": "^2.0.13",
+    "@types/node": "^18.13.0",
+    "del-cli": "^5.0.0",
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-adonis": "^2.1.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "mrm": "^4.1.13",
+    "np": "^7.6.3",
+    "prettier": "^2.8.3",
+    "typescript": "^4.9.5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:adonis/typescriptPackage",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "build"
+  ],
+  "np": {
+    "contents": ".",
+    "anyBranch": false
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true,
+    "useTabs": false,
+    "quoteProps": "consistent",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "printWidth": 100
+  },
+  "files": [
+    "build/adonis-typings",
+    "build/src",
+    "build/index.d.ts",
+    "build/index.js",
+    "build/request-logger.d.ts",
+    "build/request-logger.js",
+    "build/providers"
+  ],
+  "adonisjs": {
+    "types": "@skrenek/request-logger",
+    "providers": [
+      "@skrenek/request-logger"
+    ]
+  }
+}
