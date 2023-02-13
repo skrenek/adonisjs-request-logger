@@ -6,8 +6,8 @@ export default class RequestLoggerProvider {
   public static needsApplication = true
 
   public register() {
-    this.app.container.bind('Adonis/Addons/RequestLogger', () => {
-      const { RequestLoggerMiddleware } = require('../src/RequestLogger/index')
+    this.app.container.bind('Adonis/Addons/Skrenek/RequestLogger', () => {
+      const { RequestLoggerMiddleware } = require('../src/RequestLogger')
       return RequestLoggerMiddleware
     })
   }

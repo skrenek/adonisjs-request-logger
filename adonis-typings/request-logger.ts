@@ -1,5 +1,7 @@
-declare module '@ioc:Adonis/Addons/RequestLogger' {
-  export enum LogFormatProperties {
+declare module '@ioc:Adonis/Addons/Skrenek/RequestLogger' {
+  import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+
+  export const enum LogFormatProperties {
     clientIp = '%a',
     firstLine = '%r',
     referrer = '%{Referer}',
@@ -16,7 +18,16 @@ declare module '@ioc:Adonis/Addons/RequestLogger' {
     userAgent = '%{User-Agent}',
   }
 
-  export enum LogFormats {
-    Combined = '%h %l %u %t "%r" %s "%{Referer}" "%{User-agent}',
+  export const enum LogFormats {
+    Combined = '%h %l %u %t "%r" %s "%{Referer}" "%{User-Agent}"',
   }
+
+  export interface RequestLoggerMiddlewareContract {
+    new (format: string): {
+      handle(ctx: HttpContextContract, next: () => Promise<void>)
+    }
+  }
+
+  const RequestLoggerMiddleware: RequestLoggerMiddlewareContract
+  export default RequestLoggerMiddleware
 }

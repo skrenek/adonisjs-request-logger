@@ -2,7 +2,7 @@
   "name": "adonisjs-request-logger",
   "version": "0.1.0",
   "description": "A simple middleware module to add configurable http request logging",
-  "main": "index.js",
+  "main": "build/providers/RequestLoggerProvider.js",
   "scripts": {
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
     "pretest": "npm run lint",
@@ -79,6 +79,11 @@
     "arrowParens": "always",
     "printWidth": 100
   },
+  "files": [
+    "build/adonis-typings",
+    "build/src",
+    "build/providers"
+  ],
   "adonisjs": {
     "types": "@skrenek/request-logger",
     "providers": [

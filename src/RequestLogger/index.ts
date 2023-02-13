@@ -1,8 +1,10 @@
+/// <reference path="../../adonis-typings/request-logger.ts" />
+
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ConfigContract } from '@ioc:Adonis/Core/Config'
 import { LoggerContract } from '@ioc:Adonis/Core/Logger'
-import { LogFormatProperties, LogFormats } from '@ioc:Adonis/Addons/RequestLogger'
 import { inject } from '@adonisjs/application'
+import { LogFormatProperties, LogFormats } from '@ioc:Adonis/Addons/Skrenek/RequestLogger'
 
 @inject(['Adonis/Core/Config', 'Adonis/Core/Logger'])
 export class RequestLoggerMiddleware {
@@ -10,8 +12,7 @@ export class RequestLoggerMiddleware {
   private formatParts: string[]
 
   constructor(config: ConfigContract, private logger: LoggerContract) {
-    this.format = config.get('request-logger.format')
-    this.logger = logger
+    this.format = config.get('request-logger.format', 'combined')
     this.initFormat()
   }
 
@@ -23,21 +24,30 @@ export class RequestLoggerMiddleware {
   }
 
   private lookup(format: string, ctx: HttpContextContract): string {
-    switch (format) {
+    const f = format.replace(/"/g, '')
+    let ret: string = ''
+    switch (f) {
       case LogFormatProperties.clientIp:
-        return ctx.request.ip()
+        ret = ctx.request.ip()
+        break
       case LogFormatProperties.firstLine:
-        return `${ctx.request.method()} ${ctx.request.url()} ${ctx.request.request.httpVersion}`
+        ret = `${ctx.request.method()} ${ctx.request.url()} ${ctx.request.request.httpVersion}`
+        break
       case LogFormatProperties.referrer:
-        return ctx.request.header('referer', '-')
+        ret = ctx.request.header('referer', '-')
+        break
       case LogFormatProperties.remoteHost:
-        return ctx.request.host() || ''
+        ret = ctx.request.host() || ''
+        break
       case LogFormatProperties.requestProtocol:
-        return ctx.request.protocol()
+        ret = ctx.request.protocol()
+        break
       case LogFormatProperties.remoteLogName:
-        return '-'
+        ret = '-'
+        break
       case LogFormatProperties.requestMethod:
-        return ctx.request.method()
+        ret = ctx.request.method()
+        break
       case LogFormatProperties.requestPort:
         const host = ctx.request.host()
         const parts = host?.split(':')
@@ -45,23 +55,40 @@ export class RequestLoggerMiddleware {
         if (port === '443' && ctx.request.protocol() === 'http') {
           port = '80'
         }
-        return port
+        ret = port
+        break
       case LogFormatProperties.queryString:
-        return ctx.request.parsedUrl.query || '-'
+        ret = ctx.request.parsedUrl.query || '-'
+        break
       case LogFormatProperties.responseStatus:
-        return `${ctx.response.getStatus()}`
+        ret = `${ctx.response.getStatus()}`
+        break
       case LogFormatProperties.timestamp:
-        return new Date().toISOString()
+        ret = new Date().toISOString()
+        break
       case LogFormatProperties.remoteUser:
         // @ts-ignore
-        return ctx.request.auth?.user?.email || '-'
+        if (ctx.auth && ctx.auth.user) {
+          // @ts-ignore
+          ret = ctx.auth.user.email || '-'
+        } else {
+          ret = '-'
+        }
+        break
       case LogFormatProperties.requestUrlPath:
-        return ctx.request.parsedUrl.pathname || '-'
+        ret = ctx.request.parsedUrl.pathname || '-'
+        break
       case LogFormatProperties.userAgent:
-        return ctx.request.header('user-agent', '-')
+        ret = ctx.request.header('user-agent', '-')
+        break
       default:
-        return ''
+        ret = ''
+        break
     }
+    if (format !== f) {
+      return format.replace(f, ret)
+    }
+    return ret
   }
 
   public async handle(ctx: HttpContextContract, next: () => Promise<void>) {
