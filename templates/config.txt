@@ -1,0 +1,4 @@
+/**
+ * The log format to use.  See the LogFormatProperties enum for accepted values.
+ */
+export const format = 'combined'

@@ -1,5 +1,5 @@
 {
-  "name": "adonisjs-request-logger",
+  "name": "@skrenek/adonisjs-request-logger",
   "version": "0.1.0",
   "description": "A simple middleware module to add configurable http request logging",
   "main": "build/providers/RequestLoggerProvider.js",
@@ -12,16 +12,29 @@
     "version": "npm run build",
     "format": "prettier --write .",
     "clean": "del-cli build",
-    "compile": "npm run lint && npm run clean && tsc",
+    "compile": "npm run lint && npm run clean && tsc && npm run copyfiles",
     "build": "npm run compile",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "copyfiles": "copyfiles \"templates/**/*.txt\" \"instructions.md\" build"
   },
   "keywords": [
     "adonisjs",
     "request",
     "logging"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skrenek/adonisjs-request-logger.git"
+  },
+  "homepage": "https://github.com/skrenek/adonisjs-request-logger#adonisjs-request-logger",
   "author": "Steve Krenek (https://github.com/skrenek)",
+  "bugs": {
+    "url": "https://github.com/skrenek/adonisjs-request-logger/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
   "license": "MIT",
   "mrmConfig": {
     "core": false,
@@ -35,6 +48,7 @@
     "@adonisjs/mrm-preset": "^5.0.3",
     "@adonisjs/require-ts": "^2.0.13",
     "@types/node": "^18.13.0",
+    "copyfiles": "^2.4.1",
     "del-cli": "^5.0.0",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
@@ -82,12 +96,23 @@
   "files": [
     "build/adonis-typings",
     "build/src",
-    "build/providers"
+    "build/providers",
+    "build/templates",
+    "build/instructions.md",
+    "build/instructions.js"
   ],
   "adonisjs": {
-    "types": "@skrenek/request-logger",
+    "instructionsMd": "./build/instructions.md",
+    "instructions": "./build/instructions.js",
     "providers": [
-      "@skrenek/request-logger"
-    ]
+      "@skrenek/adonisjs-request-logger"
+    ],
+    "templates": {
+      "basePath": "./build/templates"
+    },
+    "types": "@skrenek/adonisjs-request-logger"
+  },
+  "dependencies": {
+    "@adonisjs/sink": "^5.4.2"
   }
 }
