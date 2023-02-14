@@ -1,3 +1,13 @@
+/*
+ * File: index.ts
+ * Created Date: Feb 07, 2023
+ * Copyright (c) 2023 Steve Krenek (https://github.com/skrenek)
+ * Author: Steve Krenek (https://github.com/skrenek)
+ * -----
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 /// <reference path="../../adonis-typings/request-logger.ts" />
 
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
