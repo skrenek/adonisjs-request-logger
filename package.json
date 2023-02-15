@@ -1,6 +1,6 @@
 {
   "name": "@skrenek/adonisjs-request-logger",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple middleware module to add configurable http request logging",
   "main": "build/providers/RequestLoggerProvider.js",
   "scripts": {
