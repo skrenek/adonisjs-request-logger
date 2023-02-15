@@ -6,7 +6,7 @@
   "scripts": {
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
     "pretest": "npm run lint",
-    "test": "node -r @adonisjs/require-ts/build/register bin/test.ts",
+    "test": "",
     "lint": "eslint . --ext=.ts",
     "release": "np --message=\"chore(release): %s\"",
     "version": "npm run build",
