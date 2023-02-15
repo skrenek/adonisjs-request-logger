@@ -5,7 +5,9 @@
 
 This module provides a request (access) logger for [AdonisJS](https://adonisjs.com/).  
 
-The supported format codes approximate what [Apache log formats](https://httpd.apache.org/docs/2.4/mod/mod_log_config.html#formats) support, but not all formats are supported.  See the [LogFormatProperties enum](https://github.com/skrenek/adonisjs-request-logger/blob/b9cbdb45496791551c6b3d280f00de7a2a748284/adonis-typings/request-logger.ts#L14) for the currently supported formats.
+The supported format codes approximate what [Apache log formats](https://httpd.apache.org/docs/2.4/mod/mod_log_config.html#formats) support, but not all formats are supported.  I have never needed more than what is provided here.  If you find you'd like some added, pull requests are very much welcomed. 😊
+
+See the [LogFormatProperties enum](https://github.com/skrenek/adonisjs-request-logger/blob/b9cbdb45496791551c6b3d280f00de7a2a748284/adonis-typings/request-logger.ts#L14) for the currently supported formats.
 
 A helper is also provided for an approximation of Apache log format's "combined" log format via the `LogFormat.combined` enum member.  This is the default format.
 

@@ -14,7 +14,7 @@ We make use of [standard](https://standardjs.com/) to lint our code. Standard do
 
 ## Development work-flow
 
-Always make sure to lint and test your code before pushing it to the GitHub.
+Always make sure to lint and test your code where appropriate before pushing it to the GitHub.
 
 ```bash
 npm test
