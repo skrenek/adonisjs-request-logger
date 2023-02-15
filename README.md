@@ -44,10 +44,10 @@ Supported log formats can be found [here](https://github.com/skrenek/adonisjs-re
 
 > One final note.  If you're using AdonisJS's supported authentication module, the remote user log format (%u) will display the authenticated user's email address if available.
 
-[npm-image]: https://img.shields.io/npm/v/adonisjs-request-logger.svg?style=for-the-badge&logo=npm
-[npm-url]: https://npmjs.org/package/adonisjs-request-logger "npm"
+[npm-image]: https://img.shields.io/npm/v/@skrenek/adonisjs-request-logger.svg?style=for-the-badge&logo=npm
+[npm-url]: https://npmjs.org/package/@skrenek/adonisjs-request-logger "npm"
 
-[license-image]: https://img.shields.io/npm/l/adonisjs-request-logger?color=blueviolet&style=for-the-badge
+[license-image]: https://img.shields.io/npm/l/@skrenek/adonisjs-request-logger?color=blueviolet&style=for-the-badge
 [license-url]: LICENSE.md "license"
 
 [typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
